@@ -162,10 +162,10 @@ const errors =[]; //array där vi lägger till eventuella errors
     console.log(errors);
 
     const user ={
-        firstName:document.querySelector('firstName'),
-        lastName:document.querySelector('lastName'),
-        email:document.querySelector('email'),
-        password:document.querySelector('password')
+        förnamn:(firstName).value,
+        lastName:(lastName).value,
+        email:(email).value,
+        password:(password).value
     }
 
     if(errors.includes(false)) { // kollar om errors inehåller ett false värder
