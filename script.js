@@ -25,7 +25,7 @@ const setError = (input) => { //deklarer set error och tar emot input referens
 const validateText = (id) => {
     
     const name = document.querySelector(id)
-    const regEx= "/^[a-zA-Z]*$/"
+    const regEx= /^[A-Za-z]+$/
     
     //skapar en if-sats
     if(name.value.trim() === '') { // om användaren inte skriver in något
@@ -40,7 +40,7 @@ const validateText = (id) => {
 
      }
 
-     else if (!regEx.test(name)){
+     else if (!regEx.test(name.value)){
         console.log('kan inte innehålla siffror');
         return setError(name)
      }
