@@ -1,26 +1,26 @@
 const form = document.querySelector('#validationForm');
 const button = document.querySelector('.btn');
 const nonemessage=document.querySelector('.d-none')
-/*const firstName =document.querySelector ('#firstName');
-const lastName = document.querySelector('#lastName');
-const password= document.querySelector('#password')
-const password2 = document.querySelector('#repeatPassword')
-const email = document.querySelector('#email');*/
+//const firstName =document.querySelector ('#firstName');
+//const lastName = document.querySelector('#lastName');
+//const password= document.querySelector('#password')
+//const password2 = document.querySelector('#repeatPassword')
+//const email = document.querySelector('#email');*/
 
 
 const setSuccess = (input) => {
-    //input.classList.remove('errorMessage');
-    //input.classList.add('d-none');
-    console.log('success');
+    input.classList.remove('error');
+    input.classList.add('success');
+    //console.log('success');
     input.focus()
     return true;
 }
 
 const setError = (input) => { //deklarer set error och tar emot input referens
-    //input.classList.add('errorMessage');
-    //input.classList.remove('d-none');
+    input.classList.add('error');
+    input.classList.remove('success');
    
-    console.log('error');
+    //console.log('error');
     input.focus(); // vi markerar när vi tabbar på något eller markerar på ett element
     return false;
 }
@@ -29,16 +29,19 @@ const setError = (input) => { //deklarer set error och tar emot input referens
 const validateText = (id) => {
     
     const name = document.querySelector(id)
+    //firstName = document.querySelector('#firstName')
+    //lastName= document.querySelector('#lastName')
     const regEx = /^[a-zA-Zéüöêåø.\-_']+$/
-    
-    
+
     //skapar en if-sats
     if(name.value.trim() === '') { // om användaren inte skriver in något
-        console.log('Name can not be empty.'); //skrivs texten ut i consolen
+        //console.log('du måste skriva in namn');
+        console.log(`You have to write a valid ${name.name}`); 
         return setError(name); //här kallar vi på set setError funktionen och skickar med våran referens till input
     } 
+    
 
-     else if (name.value.length < 2) { // om värdet är mindra än 2
+     else if (name.value.length < 2 ) { // om värdet är mindra än 2
         console.log('Name must contain at least 2 characters.'); //berättar vi att värdet behöver vara mer än 1 bokstav lång
         return setError(name) 
     }
@@ -62,6 +65,7 @@ const validateEmail = (id) => {
    
     if(email.value.trim() === '') {
         console.log('Email can not be empty.');
+        
         return setError(email)  //här kallar vi på set setError funktionen och skickar med våran referens till input
      } 
      else if (!regExp.test(email.value)) {
@@ -74,15 +78,18 @@ const validateEmail = (id) => {
 
 }
 
-const validatePassword = (id) => {
+/*const validatePassword = (id) => {
 
     const password = document.querySelector(id)
     const password2 = document.querySelector('#repeatPassword')
 
  if (password.value.trim() === ''){
         console.log('Password can not be empty');
+        
       return setError(password)
     }
+
+
   else if (password.value.trim().length < 6 || password.value.trim().length > 15){
         console.log('Password min 6 max 15 characters');
         return setError (password)
@@ -91,33 +98,54 @@ const validatePassword = (id) => {
  
   else if (password2.value !== password.value){
         console.log('Password does not match');
-        return setError (password2)
+       return setError (password2)
         }
+
 else {
     return setSuccess(password)
     }   
 
-}
-
- /*const validatePassword2 = (id) => { // fixa så passward 1 och två hittar varandra
-
-    const password2 = document.querySelector(id)
-    const password = document.querySelector(id)
-
-    if (password2.value.trim() === ''){
-        console.log('Password can not be emptyyyyyy');
-        return setError(password2)
-    }
-
-    else if (password2.value !== password.value){
-        console.log('Password does not match');
-        return setError (password2)
-        }
-    else {
-        return setSuccess(password2)
-    }
-
 }*/
+
+
+
+const validatePassword = (id) => {
+
+    const password = document.querySelector(id)
+    const password2 = document.querySelector('#repeatPassword')
+
+ 
+
+     if(password.value.trim() === ''){
+        console.log('password can not be empty');
+      return setError(password)
+    }
+
+    else if (password2.value.trim() === ''){
+        console.log(`du måste ${password2.name}`);
+      return setError(password2)
+    }
+
+
+
+   else if (password.value.trim().length < 6 || password.value.trim().length > 15){
+        console.log('Password min 6 max 15 characters');
+        return setError (password)
+        }
+        
+
+       else if (password.value !== password2.value){
+        console.log('Password does not match');
+        return setError (password)
+        }
+        
+        else {
+       return setSuccess(password)
+       }   
+
+         
+
+}
 
 const validateCheckbox = (id) => {
 
@@ -184,17 +212,10 @@ const errors =[]; //array där vi lägger till eventuella errors
         nonemessage.classList.remove('d-none');
      }
     else {
-        
         nonemessage.classList.add('d-none');
-
         console.log('YEY, alla fält är rätt ifyllda!');
         console.log(user)
-       
-        
-        }
-
-        
-
+    }
 
 
 })
