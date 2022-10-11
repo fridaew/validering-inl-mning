@@ -25,6 +25,7 @@ const setError = (input) => { //deklarer set error och tar emot input referens
 const validateText = (id) => {
     
     const name = document.querySelector(id)
+    const regEx= "/^[a-zA-Z]*$/"
     
     //skapar en if-sats
     if(name.value.trim() === '') { // om användaren inte skriver in något
@@ -35,6 +36,13 @@ const validateText = (id) => {
      else if (name.value.length < 2) { // om värdet är mindra än 2
         console.log('Name must contain at least 2 characters'); //berättar vi att värdet behöver vara mer än 1 bokstav lång
         return setError(name) 
+
+
+     }
+
+     else if (!regEx.test(name)){
+        console.log('kan inte innehålla siffror');
+        return setError(name)
      }
      else {
          return setSuccess(name) // här kallar vi på setSucces 
@@ -162,10 +170,10 @@ const errors =[]; //array där vi lägger till eventuella errors
     console.log(errors);
 
     const user ={
-        förnamn:(firstName).value,
-        lastName:(lastName).value,
-        email:(email).value,
-        password:(password).value
+        Firstname:(firstName).value,
+        Lastame:(lastName).value,
+        Email:(email).value,
+        Password:(password).value
     }
 
     if(errors.includes(false)) { // kollar om errors inehåller ett false värder
