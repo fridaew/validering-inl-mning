@@ -1,5 +1,6 @@
 const form = document.querySelector('#validationForm');
 const button = document.querySelector('.btn');
+const nonemessage=document.querySelector('.d-none')
 /*const firstName =document.querySelector ('#firstName');
 const lastName = document.querySelector('#lastName');
 const password= document.querySelector('#password')
@@ -8,16 +9,17 @@ const email = document.querySelector('#email');*/
 
 
 const setSuccess = (input) => {
-    //input.classList.remove('error');
-    //input.classList.add('success');
+    //input.classList.remove('errorMessage');
+    //input.classList.add('d-none');
     console.log('success');
     input.focus()
     return true;
 }
 
 const setError = (input) => { //deklarer set error och tar emot input referens
-    //input.classList.add('error');
-    //input.classList.remove('success');
+    //input.classList.add('errorMessage');
+    //input.classList.remove('d-none');
+   
     console.log('error');
     input.focus(); // vi markerar när vi tabbar på något eller markerar på ett element
     return false;
@@ -28,7 +30,7 @@ const validateText = (id) => {
     
     const name = document.querySelector(id)
     const regEx = /^[a-zA-Zéüöêåø.\-_']+$/
-    //const regEx= /^[A-Za-z]+$/
+    
     
     //skapar en if-sats
     if(name.value.trim() === '') { // om användaren inte skriver in något
@@ -49,6 +51,7 @@ const validateText = (id) => {
          return setSuccess(name) // här kallar vi på setSucces 
          }
 }
+
 
 
 const validateEmail = (id) => {
@@ -142,7 +145,7 @@ const errors =[]; //array där vi lägger till eventuella errors
      
    for(let i=0; i < form.length; i++){ //här har vi tillgång till formuläret och tillgång till hur långt formuläret är
 
-    console.log(form[i]);
+    //console.log(form[i]);
         
 
         const inputId = '#' + form[i].id //hämtar ut id
@@ -171,18 +174,22 @@ const errors =[]; //array där vi lägger till eventuella errors
 
     const user ={
         Firstname:(firstName).value,
-        Lastame:(lastName).value,
+        Lastname:(lastName).value,
         Email:(email).value,
         Password:(password).value
     }
 
     if(errors.includes(false)) { // kollar om errors inehåller ett false värder
-        console.log('error');
-    }
+        
+        nonemessage.classList.remove('d-none');
+     }
     else {
         
-        console.log('success');
+        nonemessage.classList.add('d-none');
+
+        console.log('YEY, alla fält är rätt ifyllda!');
         console.log(user)
+       
         
         }
 
