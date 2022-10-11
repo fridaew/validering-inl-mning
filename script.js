@@ -36,9 +36,7 @@ const validateText = (id) => {
      else if (name.value.length < 2) { // om värdet är mindra än 2
         console.log('Name must contain at least 2 characters'); //berättar vi att värdet behöver vara mer än 1 bokstav lång
         return setError(name) 
-
-
-     }
+    }
 
      else if (!regEx.test(name.value)){
         console.log('kan inte innehålla siffror');
@@ -48,7 +46,6 @@ const validateText = (id) => {
          return setSuccess(name) // här kallar vi på setSucces 
          }
 }
-
 
 
 const validateEmail = (id) => {
