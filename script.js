@@ -10,6 +10,7 @@ const email = document.querySelector('#email');*/
 const setSuccess = (input) => {
     //input.classList.remove('error');
     //input.classList.add('success');
+    console.log('success');
     input.focus()
     return true;
 }
@@ -17,6 +18,7 @@ const setSuccess = (input) => {
 const setError = (input) => { //deklarer set error och tar emot input referens
     //input.classList.add('error');
     //input.classList.remove('success');
+    console.log('error');
     input.focus(); // vi markerar när vi tabbar på något eller markerar på ett element
     return false;
 }
@@ -29,17 +31,17 @@ const validateText = (id) => {
     
     //skapar en if-sats
     if(name.value.trim() === '') { // om användaren inte skriver in något
-        console.log('Name can not be empty'); //skrivs texten ut i consolen
+        console.log('Name can not be empty.'); //skrivs texten ut i consolen
         return setError(name); //här kallar vi på set setError funktionen och skickar med våran referens till input
     } 
 
      else if (name.value.length < 2) { // om värdet är mindra än 2
-        console.log('Name must contain at least 2 characters'); //berättar vi att värdet behöver vara mer än 1 bokstav lång
+        console.log('Name must contain at least 2 characters.'); //berättar vi att värdet behöver vara mer än 1 bokstav lång
         return setError(name) 
     }
 
      else if (!regEx.test(name.value)){
-        console.log('kan inte innehålla siffror');
+        console.log('Name must contain letters only.');
         return setError(name)
      }
      else {
@@ -55,11 +57,11 @@ const validateEmail = (id) => {
     const regExp = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,6}$/
    
     if(email.value.trim() === '') {
-        console.log('Email can not be empty');
+        console.log('Email can not be empty.');
         return setError(email)  //här kallar vi på set setError funktionen och skickar med våran referens till input
      } 
      else if (!regExp.test(email.value)) {
-        console.log('Provide valid email adress');
+        console.log('Email is not valid.');
         return setError(email)
      }
      else {
@@ -74,7 +76,7 @@ const validatePassword = (id) => {
     const password2 = document.querySelector('#repeatPassword')
 
  if (password.value.trim() === ''){
-        console.log('password can not be empty');
+        console.log('Password can not be empty');
       return setError(password)
     }
   else if (password.value.trim().length < 6 || password.value.trim().length > 15){
@@ -174,11 +176,11 @@ const errors =[]; //array där vi lägger till eventuella errors
     }
 
     if(errors.includes(false)) { // kollar om errors inehåller ett false värder
-        console.log('det finns fel i formuläret');
+        console.log('error');
     }
     else {
         
-        console.log('du klarade det');
+        console.log('success');
         console.log(user)
         
         }
